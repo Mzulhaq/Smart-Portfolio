@@ -1,0 +1,23 @@
+# Core Data & Math
+pandas
+numpy
+scipy
+
+# Plotting & Dashboard
+matplotlib
+seaborn
+streamlit
+plotly
+ipykernel       # For Jupyter Notebooks
+
+# Optimization & Machine Learning
+scikit-learn
+
+# API & Environment Management
+alpaca-py
+python-dotenv
+requests
+
+# Optional but useful
+yfinance         
+pandas-datareader
