@@ -24,11 +24,11 @@ def get_historical_data(symbol: str, start: str, end: str):
     bars = client.get_stock_bars(request_params)
     return bars.df
 
-def fetch_all_data(symbols: list):
+def fetch_all_data(symbols: list, start_date: str):
     print("Fetching historical data from Alpaca...")
     all_data = {}
     for s in symbols:
-        all_data[s] = get_historical_data(s, "2025-01-01", dt.datetime.now().strftime('%Y-%m-%d'))
+        all_data[s] = get_historical_data(s, start_date, dt.datetime.now().strftime('%Y-%m-%d'))
     return all_data
 
 def print_sample_data(all_data: dict):
@@ -39,7 +39,7 @@ def print_sample_data(all_data: dict):
 if __name__ == "__main__":
     #stocks invested in
     symbols = ["AAPL", "MSFT", "META", "AMZN", "COST", "GOOGL", "TSLA", "NVDA", "SHOP", "CRWD"]
-    all_data = fetch_all_data(symbols)
-    print_sample_data(all_data)
+    all_data = fetch_all_data(symbols, "2020-01-01")
+    #print_sample_data(all_data)
     for symbol, df in all_data.items():
         df.to_csv(f"data/{symbol}_data.csv", index=True)
