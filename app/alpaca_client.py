@@ -42,4 +42,4 @@ if __name__ == "__main__":
     all_data = fetch_all_data(symbols, "2020-01-01")
     #print_sample_data(all_data)
     for symbol, df in all_data.items():
-        df.to_csv(f"data/{symbol}_data.csv", index=True)
+        df.to_csv(f"data/{symbol}_alpdata.csv", index=True)
