@@ -6,7 +6,7 @@ from typing import Dict
 import numpy as np
 import pandas as pd
 
-from .nvda_strategy import NvdaStrategyConfig, add_indicators, generate_signals
+from nvda_strategy import NvdaStrategyConfig, add_indicators, generate_signals
 
 
 @dataclass

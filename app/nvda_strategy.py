@@ -5,12 +5,12 @@ from dataclasses import dataclass
 
 @dataclass
 class NvdaStrategyConfig:
-    short_sma: int = 20
-    mid_sma: int = 50
-    long_sma: int = 200
+    short_sma: int = 5       # very fast
+    mid_sma: int = 20        # short/medium trend
+    long_sma: int = 0        # disable long-term filter (see below)
     rsi_period: int = 14
-    rsi_oversold: float = 30.0
-    rsi_exit: float = 60.0
+    rsi_oversold: float = 45.0   # almost “mild dip”
+    rsi_exit: float = 60.0       # exit when momentum normalizes
 
 
 def _compute_rsi(series: pd.Series, period: int) -> pd.Series:
@@ -50,11 +50,12 @@ def generate_signals(
 
     data = df_with_indicators.copy()
 
-    uptrend = (data["close"] > data["sma_mid"]) & (data["sma_mid"] > data["sma_long"])
+    uptrend = data["close"] > data["sma_mid"]
 
     rsi = data["rsi"]
     rsi_prev = rsi.shift(1)
-    rsi_cross_up = (rsi_prev < cfg.rsi_oversold) & (rsi >= cfg.rsi_oversold)
+    threshold = cfg.rsi_oversold
+    rsi_cross_up = (rsi_prev < threshold) & (rsi >= threshold)
 
     entry_signal = uptrend & rsi_cross_up
 

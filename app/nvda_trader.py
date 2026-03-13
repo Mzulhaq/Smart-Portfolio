@@ -5,9 +5,9 @@ from typing import Tuple
 
 import pandas as pd
 
-from . import alpaca_client
-from .nvda_backtest import load_nvda_data
-from .nvda_strategy import NvdaStrategyConfig, add_indicators, generate_signals
+import alpaca_client
+from nvda_backtest import load_nvda_data
+from nvda_strategy import NvdaStrategyConfig, add_indicators, generate_signals
 
 
 def _compute_latest_signal(cfg: NvdaStrategyConfig | None = None) -> Tuple[pd.Timestamp, int, float]:
