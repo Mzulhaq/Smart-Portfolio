@@ -96,7 +96,7 @@ def main() -> None:
     fig.update_xaxes(title_text="Date", tickformat="%Y-%m")
     fig.update_yaxes(title_text="Equity")
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     st.subheader("Summary Statistics")
     col1, col2, col3 = st.columns(3)
@@ -159,7 +159,7 @@ def main() -> None:
             fig_yf = px.line(df_yf, x="date", y=price_col, title=f"{symbol} (yfinance)")
             fig_yf.update_xaxes(title_text="Date", tickformat="%Y-%m")
             fig_yf.update_yaxes(title_text="Price")
-            st.plotly_chart(fig_yf, use_container_width=True)
+            st.plotly_chart(fig_yf, width="stretch")
         else:
             st.info(f"No yfinance file found for {symbol} at {yf_path.name}.")
 
@@ -188,7 +188,7 @@ def main() -> None:
             fig_alp = px.line(df_alp, x="date", y=price_col, title=f"{symbol} (Alpaca)")
             fig_alp.update_xaxes(title_text="Date", tickformat="%Y-%m")
             fig_alp.update_yaxes(title_text="Price")
-            st.plotly_chart(fig_alp, use_container_width=True)
+            st.plotly_chart(fig_alp, width="stretch")
         else:
             st.info(f"No Alpaca file found for {symbol} at {alp_path.name}.")
 
